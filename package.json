@@ -1,0 +1,44 @@
+{
+    "name": "zed",
+    "optionalDependencies": {},
+    "exportedEnvVars": {
+        "PATH": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/bin"
+        },
+        "version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "1.4.0"
+        },
+        "zed_version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "1.4.0"
+        },
+        "FINDLIB": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/lib"
+        }
+    },
+    "version": "1.4.0",
+    "dependencies": {
+        "react": "https://github.com/npm-opam/react",
+        "ocamlbuild": "https://github.com/npm-opam/ocamlbuild",
+        "ocamlfind": "https://github.com/npm-opam/ocamlfind",
+        "ocaml": "https://github.com/npm-opam/ocaml.git#npm-4.02.3",
+        "camomile": "https://github.com/npm-opam/camomile",
+        "dependency-env": "https://github.com/npm-ml/dependency-env.git",
+        "substs": "https://github.com/yunxing/substs.git",
+        "base-bytes": "https://github.com/npm-opam/base-bytes",
+        "nopam": "https://github.com/yunxing/nopam.git",
+        "opam-installer-bin": "https://github.com/yunxing/opam-installer-bin.git"
+    },
+    "scripts": {
+        "postinstall": "eval $(dependencyEnv) && nopam && ocaml setup.ml -configure --prefix $opam_prefix && ocaml setup.ml -build && ocaml setup.ml -install && (opam-installer --prefix=$opam_prefix || true) && injectOpamEnvs"
+    }
+}
